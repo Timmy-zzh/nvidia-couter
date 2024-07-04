@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/nvidia-couter-cmake.dir/main.cpp.o  -o nvidia-couter-cmake 

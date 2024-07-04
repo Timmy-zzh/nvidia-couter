@@ -1,0 +1,3 @@
+/home/yingzi/work-zzh/nvidia-couter/build-aarch64/CMakeFiles/rebuild_cache.dir
+/home/yingzi/work-zzh/nvidia-couter/build-aarch64/CMakeFiles/edit_cache.dir
+/home/yingzi/work-zzh/nvidia-couter/build-aarch64/CMakeFiles/nvidia-couter-cmake.dir
