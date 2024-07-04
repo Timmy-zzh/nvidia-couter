@@ -1,15 +1,23 @@
 #!/bin/bash
+###
+ # @Descripttion:
+###
 
-# 设置构建目录
-BUILD_DIR="build-aarch64"
-mkdir -p $BUILD_DIR
-cd $BUILD_DIR
+TOOLCHAIN_PREFIX=aarch64-linux-gnu
+PLATFORM_ABI=aarch64
 
-# 配置CMake
-cmake .. -G "Unix Makefiles"
+mkdir -p build-aarch64 && cd build-aarch64
+cmake -G "Unix Makefiles" .. \
+      -DPLATFORM_ABI="${PLATFORM_ABI}" \
+      -DCMAKE_SYSTEM_NAME=Linux \
+      -DCMAKE_SYSTEM_VERSION=1 \
+      -DCMAKE_SYSTEM_PROCESSOR=aarch64 \
+      -DCMAKE_LINKER=${TOOLCHAIN_PREFIX}-ld \
+      -DCMAKE_C_COMPILER=${TOOLCHAIN_PREFIX}-gcc \
+      -DCMAKE_CXX_COMPILER=${TOOLCHAIN_PREFIX}-g++ \
+      -DBUILD_TEST=OFF
+make -j4
 
-# 构建项目
-make -j8
+cd ..
 
-# 运行可执行文件
-./nvidia-couter-cmake
+# ./output/NvidiaCouter
