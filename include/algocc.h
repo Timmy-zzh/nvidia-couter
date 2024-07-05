@@ -1,7 +1,6 @@
 #ifndef __algocc_H_
 #define __algocc_H_
 
-// 依赖文件
 // #include "../algocc/logger/logger.h"
 // #include "../algocc/thread/taskdispatcher.h"
 // #include "../algocc/thread/task.h"
