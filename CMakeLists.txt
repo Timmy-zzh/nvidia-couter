@@ -6,6 +6,9 @@ cmake_minimum_required(VERSION 3.5)
 # 设置项目名称  
 project(NvidiaCouter)
 
+# 包含自定义的CMake脚本algocc.cmake  
+include (cmake/algocc.cmake)  
+
 # 添加全局编译定义  
 add_definitions("-O3 -Wall -fPIC -Wno-unused-result")  
 # 设置C++编译标准为C++11  
@@ -18,7 +21,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-builtin-macro-redefined")
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake" "${CMAKE_MODULE_PATH}")  
 
 # 查找并包含Algocc库（这可能是一个自定义的或第三方库）  
-find_package(Algocc REQUIRED)  
+# find_package(Algocc REQUIRED)  
 
 # 尝试根据项目源目录的名称设置Algocc的路径  -- 找打了Algocc项目的路径
 get_filename_component(DIR_NAME ${PROJECT_SOURCE_DIR} NAME)  
@@ -41,9 +44,7 @@ message("JsoncppHome -----------" ${JsoncppHome})
 algocc_add_include(${AlgoccHome})  
 
 # 添加全局包含目录,所有的.h文件
-include_directories(${PROJECT_SOURCE_DIR}/vending_client  
-                    ${PROJECT_SOURCE_DIR}/vending_service    
-                    ${PROJECT_SOURCE_DIR}/utils  
+include_directories(${PROJECT_SOURCE_DIR}/include  
                     ${ZeromqHome}/include  
                     ${JsoncppHome}/include
                     )  

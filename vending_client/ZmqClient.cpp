@@ -1,10 +1,17 @@
 #include "ZmqClient.h"
 
+int ZmqClient::play(std::string data)
+{
+    log_info << __func__ << "enter...";
 
-// ZmqClient::ZmqClient(/* args */)
-// {
-// }
+    algocc::Result<int> ret = callFunc<int>("play", data);
 
-// ZmqClient::~ZmqClient()
-// {
-// }
+    if (ret.valid())
+    {
+        return ret.val();
+    }
+    else
+    {
+        return -1;
+    }
+}
