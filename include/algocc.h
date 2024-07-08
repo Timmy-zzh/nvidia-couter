@@ -33,4 +33,6 @@
 #include "zmq/zmqserver.h"
 #include "callhandler.h"
 
+#include "json/json.h"
+
 #endif //__algocc_H_

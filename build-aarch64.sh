@@ -16,6 +16,8 @@ cmake -G "Unix Makefiles" .. \
       -DCMAKE_C_COMPILER=${TOOLCHAIN_PREFIX}-gcc \
       -DCMAKE_CXX_COMPILER=${TOOLCHAIN_PREFIX}-g++ \
       -DBUILD_TEST=OFF
+
+# make VERBOSE=1 -j4
 make -j4
 
 cd ..

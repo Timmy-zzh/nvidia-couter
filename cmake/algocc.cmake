@@ -32,5 +32,6 @@ function(algocc_add_include algoccpaths)
                         ${algoccpaths}/plugin
                         ${algoccpaths}/msh
                         ${algoccpaths}/rpc
+                        ${algoccpaths}/rpc/zmq
                         ${algoccpaths}/allocater) 
 endfunction()

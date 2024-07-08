@@ -1,10 +1,10 @@
 #include "ZmqClient.h"
 
-int ZmqClient::play(std::string data)
+int ZmqClient::startTest(std::string data)
 {
-    log_info << __func__ << "enter...";
+    log_info << __func__ << " enter...";
 
-    algocc::Result<int> ret = callFunc<int>("play", data);
+    algocc::Result<int> ret = callFunc<int>("starttest", data);
 
     if (ret.valid())
     {

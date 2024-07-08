@@ -46,25 +46,32 @@ algocc_add_include(${AlgoccHome})
 # 添加全局包含目录,所有的.h文件
 include_directories(${PROJECT_SOURCE_DIR}/include  
                     ${ZeromqHome}/include  
-                    ${JsoncppHome}/include
-                    )  
+                    ${JsoncppHome}/include)  
 
 # 添加库目录到链接器搜索路径  
 link_directories(${AlgoccHome}/libs/${PLATFORM_ABI}  
                  ${ZeromqHome}/libs/${PLATFORM_ABI}  
-                 ${JsoncppHome}/libs/${PLATFORM_ABI}  
-                )  
+                #  ${JsoncppHome}/libs/${PLATFORM_ABI}
+                 ${JsoncppHome}/staticlibs/aarch64
+                 )  
 
+# 链接库  
+link_libraries(algocc pthread dl zmq jsoncpp)  
 # 设置一些常用的库  
-set(COMMON_LIBS algocc zmq jsoncpp pthread dl)  
+set(COMMON_LIBS algocc pthread dl zmq jsoncpp)  
+
+# 设置客户端程序文件  
+set(CLIENT_FILES test/test_client.cpp ${VENDING_CLIENT_FILES})  
+# 添加可执行文件  
+add_executable(testClient ${CLIENT_FILES})  
+target_link_libraries(testClient ${COMMON_LIBS})  
 
 # 设置主程序文件  
-set(MAIN_FILES main.cpp ${VENDING_CLIENT_FILES})  
-
+set(SERVICE_FILES main.cpp ${VENDING_SERVICE_FILES})  
 # 添加可执行文件  
-add_executable(${PROJECT_NAME} ${MAIN_FILES})  
+add_executable(${PROJECT_NAME} ${SERVICE_FILES})  
 # 链接主程序所需的库  
-target_link_libraries(${PROJECT_NAME} ${COMMON_LIBS} ${UDEV_LIBRARIES})  
+target_link_libraries(${PROJECT_NAME} ${COMMON_LIBS})  
 
 # 添加一个共享库dwcamera  
 # add_library(dwcamera SHARED ${RPC_CLIENT_FILE}  
@@ -89,4 +96,5 @@ target_link_libraries(${PROJECT_NAME} ${COMMON_LIBS} ${UDEV_LIBRARIES})
 ## install
 set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/output)
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/output)
-install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION ${PROJECT_SOURCE_DIR})
+
+# install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION ${PROJECT_SOURCE_DIR})
